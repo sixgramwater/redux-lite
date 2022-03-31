@@ -1,12 +1,29 @@
 import React from 'react'
 
-import { useMyHook } from 'redux-lite'
+import { useModule, dispatch, container } from './store';
+// import { useMyHook } from 'redux-lite'
 
 const App = () => {
-  const example = useMyHook()
+  // console.log(useModule)
+  // const counterState = container.getState('counter');
+  const counterState = useModule('counter');
+  // console.log(counterState)
+  const count = counterState.count;
+  const handleClick = () => {
+    // console.log(dispatch.counter);
+    dispatch('counter/addCounter', 1);
+  }
+
+  const handleAsyncClick = () => {
+    dispatch('counter/asyncAddCounter', 1);
+  }
+  // const example = useMyHook()
   return (
     <div>
-      {example}
+      {count}
+      <button onClick={handleClick}>increase</button>
+      <button onClick={handleAsyncClick}>Async increase</button>
+      
     </div>
   )
 }
