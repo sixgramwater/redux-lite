@@ -2,6 +2,7 @@ import { fetch } from "../api";
 
 const counterState = {
   count: 0,
+  otherCount: -100,
 }
 
 const counter = {
@@ -11,6 +12,12 @@ const counter = {
       return {
         ...state,
         count: state.count + payload,
+      }
+    },
+    addOtherCount({ state, payload}) {
+      return {
+        ...state,
+        otherCount: state.otherCount + payload
       }
     }
   },
