@@ -3,4 +3,4 @@ import counter from './counter';
 
 const modules = { counter };
 
-export const { useModule, dispatch, container } = create(modules);
+export const { useModule, dispatch } = create(modules);

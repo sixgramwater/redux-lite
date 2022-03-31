@@ -13,15 +13,58 @@ npm install --save redux-lite
 ## Usage
 
 ```tsx
-import * as React from 'react'
+// store/counter.ts
+import { fetch } from "../api";
 
-import { useMyHook } from 'redux-lite'
+const counterState = {
+  count: 0,
+}
 
-const Example = () => {
-  const example = useMyHook()
+// A single module named: counter
+const counter = {
+  state: counterState,
+  reducers: {
+    addCounter({ state, payload }) {
+      return {
+        ...state,
+        count: state.count + payload,
+      }
+    }
+  },
+  effects: {
+    asyncAddCounter({dispatch, state, payload}) {
+      fetch(1000).then(value => {
+        console.log(value);
+        dispatch('counter/addCounter', payload);
+      })  
+    }
+  }
+}
+
+// setup modules and invoke create()
+const modules = { counter };
+export const { useModule, dispatch } = create(modules);
+
+
+// App.jsx
+import { useModule, dispatch } from './store';
+
+const App = () => {
+  const counterState = useModule('counter');
+  const count = counterState.count;
+  const handleClick = () => {
+    dispatch('counter/addCounter', 1);
+  }
+
+  const handleAsyncClick = () => {
+    dispatch('counter/asyncAddCounter', 1);
+  }
   return (
     <div>
-      {example}
+      {count}
+      <button onClick={handleClick}>increase</button>
+      <button onClick={handleAsyncClick}>Async increase</button>
+      
     </div>
   )
 }
