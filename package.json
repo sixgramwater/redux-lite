@@ -1,7 +1,7 @@
 {
-  "name": "redux-lite",
-  "version": "1.0.0",
-  "description": "simple library for state management inspired by redux and react-redux",
+  "name": "@sixgramwater/redux-lite",
+  "version": "1.0.1",
+  "description": "A lightweight state management library for React",
   "author": "sixgramwater",
   "license": "MIT",
   "repository": "sixgramwater/redux-lite",

@@ -108,7 +108,7 @@ const create = (modules: Modules) => {
   injectFns(rootReducers);
   injectFns(rootEffects);
 
-  return { useModule, dispatch, container, useSelector }
+  return { useModule, dispatch, useSelector }
 }
 
 export default create;

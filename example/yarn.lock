@@ -1423,6 +1423,11 @@
   resolved "https://registry.npmmirror.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@sixgramwater/redux-lite@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/@sixgramwater/redux-lite/-/redux-lite-1.0.1.tgz#7c217d717cea1c5e93bada65fd949b01fd123ed4"
+  integrity sha512-bpNCFyZ5eUSBID9zPVhL7Et8kHFJ85K9zQA7OLrFTwGJ3HFXl9ItdkHxMYUoV3NAR0rDS5tLLtWqQ2VOm3zgJQ==
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.npmmirror.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"

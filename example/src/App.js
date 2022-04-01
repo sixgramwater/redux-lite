@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useModule, dispatch, container, useSelector } from './store';
+import { useModule, dispatch, useSelector } from './store';
 // import { useMyHook } from 'redux-lite'
 
 const Child = () => {
