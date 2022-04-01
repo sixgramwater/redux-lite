@@ -67,6 +67,40 @@ const create = (modules: Modules) => {
     return container.getState(namespace);
   }
 
+  // const checkUpdate = (oldState: any, newState: any) => {
+    
+  // }
+  function useSelector(namespace: string, selector: (rootState: any) => any) {
+    const [, setState] = useState({});
+
+    const forceUpdate = useCallback(() => setState({}), [setState]);
+
+    const checkUpdate = useCallback((oldState, newState) => {
+      // console.log('old', selector(oldState))
+      // console.log('new', selector(newState));
+      // forceUpdate();
+      if(selector(oldState) !== selector(newState)) {
+        forceUpdate();
+      }
+    }, [selector, forceUpdate]);
+    useEffect(() => {
+      container.addEventListener(namespace, checkUpdate);
+      return () => container.removeEventListener(namespace, checkUpdate);
+    }, [namespace, forceUpdate]);
+    return selector(container.getState(namespace));
+  }
+  // function useStore(namespace: string, selector: (rootState: any) => any) {
+  //   const [, setState] = useState({});
+  //   const forceUpdate = useCallback(() => setState({}), [setState]);
+  //   const rootState = container.getRootState();
+  //   const selected = selector(rootState);
+  //   useEffect(() => {
+  //     container.addEventListener(namespace, forceUpdate);
+  //     return () => container.removeEventListener(namespace, forceUpdate);
+  //   }, [forceUpdate, selected])
+  //   return 
+  // }
+
   // Inject each module's reducer and effect method into the Dispatch
   const rootReducers = container.getRootReducers();
   const rootEffects = container.getRootEffects();
@@ -74,7 +108,7 @@ const create = (modules: Modules) => {
   injectFns(rootReducers);
   injectFns(rootEffects);
 
-  return { useModule, dispatch }
+  return { useModule, dispatch, useSelector }
 }
 
 export default create;

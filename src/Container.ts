@@ -75,10 +75,13 @@ class Container {
   }
 
   public setState(namespace: string, newState: Record<string, any>) {
+    let oldState = {};
     if(this.rootState[namespace]) {
+      Object.assign(oldState, this.rootState[namespace]);
+      // oldState = this.rootReducers[namespace];
       this.rootState[namespace] = newState;
     }
-    this.trigger(namespace);
+    this.trigger(namespace, oldState, newState);
   }
 
   public addEventListener(namespace: string, listener: Listener) {
@@ -89,8 +92,8 @@ class Container {
     this.emitter.off(namespace, listener)
   }
 
-  public trigger(namespace: string) {
-    this.emitter.emit(namespace);
+  public trigger(namespace: string, oldState: Record<string, any>, newState: Record<string, any>) {
+    this.emitter.emit(namespace, oldState, newState);
   }
   
 }
